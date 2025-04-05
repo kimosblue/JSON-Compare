@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Comparison Tool</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">JSON Comparison Tool</h1>
+        
+        <!-- Step 1: Input Selection -->
+        <div id="step1" class="step-container active">
+            <h2>Step 1: Provide Inputs</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h5>Source A</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="fileA">Upload JSON File</label>
+                                <input type="file" id="fileA" class="form-control" accept=".json" title="Upload JSON File A">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Or paste from clipboard</label>
+                                <textarea id="clipboardA" class="form-control" rows="8" placeholder="Paste JSON content here"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h5>Source B</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="fileB">Upload JSON File</label>
+                                <input type="file" id="fileB" class="form-control" accept=".json" title="Upload JSON File B">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Or paste from clipboard</label>
+                                <textarea id="clipboardB" class="form-control" rows="8" placeholder="Paste JSON content here"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <button id="nextStep1" class="btn btn-primary btn-lg">Next: Field Mapping</button>
+            </div>
+        </div>
+
+        <!-- Step 2: Field Mapping -->
+        <div id="step2" class="step-container">
+            <h2>Step 2: Field Mapping</h2>
+            <div class="alert alert-info">
+                <strong>Instructions:</strong> Review and adjust field mappings. Suggested matches are highlighted in blue.
+                Unmapped fields will be compared by key name if they match.
+            </div>
+            <div class="mb-3 d-flex justify-content-between">
+                <button id="autoMapBtn" class="btn btn-outline-primary">
+                    <i class="bi bi-magic"></i> Auto-Match Fields
+                </button>
+                <button id="resetMappingsBtn" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-counterclockwise"></i> Reset Mappings
+                </button>
+            </div>
+            <div id="mappingContainer" class="mb-3">
+                <div class="mapping-header row bg-light p-2 fw-bold">
+                    <div class="col-md-5">Source A Field</div>
+                    <div class="col-md-2 text-center">Map To</div>
+                    <div class="col-md-5">Source B Field</div>
+                </div>
+                <div id="mappingRows" class="mapping-rows-container"></div>
+            </div>
+            <div class="text-center mt-3">
+                <button id="prevStep2" class="btn btn-secondary me-2 btn-lg">Back</button>
+                <button id="nextStep2" class="btn btn-primary btn-lg">Compare</button>
+            </div>
+        </div>
+
+        <!-- Step 3: Comparison Results -->
+        <div id="step3" class="step-container">
+            <h2>Comparison Results</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="text-primary">Source A</h5>
+                    <pre id="resultA" class="json-result p-3"></pre>
+                </div>
+                <div class="col-md-6">
+                    <h5 class="text-primary">Source B</h5>
+                    <pre id="resultB" class="json-result p-3"></pre>
+                </div>
+            </div>
+            <div class="mt-4">
+                <h4>Comparison Summary</h4>
+                <div id="summary" class="alert">
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge bg-success">Matched: <span id="matchedCount">0</span></span>
+                        <span class="badge bg-danger">Mismatched: <span id="mismatchedCount">0</span></span>
+                        <span class="badge bg-secondary">Missing: <span id="missingCount">0</span></span>
+                        <span class="badge bg-warning text-dark">Unmapped: <span id="unmappedCount">0</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <button id="prevStep3" class="btn btn-secondary me-2 btn-lg">Back</button>
+                <button id="newComparison" class="btn btn-primary btn-lg">New Comparison</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
